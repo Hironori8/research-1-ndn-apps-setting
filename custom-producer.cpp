@@ -20,14 +20,12 @@ namespace ndn {
   
   NS_OBJECT_ENSURE_REGISTERED(CustomProducer);
 
-  //サーバのID登録
 TypeId
   CustomProducer::GetTypeId()
   {
     static TypeId tid = 
       TypeId("CustomProducer")
       .SetParent<ndn::App>()
-      //親はAppクラス
       .AddConstructor<CustomProducer>()
       .AddAttribute("Prefix", "Prefix, for which producer has the data", 
           StringValue("/"),
@@ -62,7 +60,6 @@ TypeId
     NS_LOG_FUNCTION_NOARGS();
   }
   
-  //アプリケーションのスタート
   void
   CustomProducer::StartApplication()
   {
@@ -81,7 +78,6 @@ TypeId
     ndn::App::StopApplication();
   }
   
-  //要求パケットが届いたのちに対応するデータを返す
   void
   CustomProducer::OnInterest(std::shared_ptr<const ndn::Interest> interest)
   {
@@ -94,24 +90,18 @@ TypeId
     // Note that Interests send out by the app will not be sent back to the app !
 
     auto data = std::make_shared<ndn::Data>(interest->getName());
-    //要求パケットの名前と同じデータを作成
     data->setName(interest->getName()); 
     data->setFreshnessPeriod(ndn::time::milliseconds(m_freshness.GetMilliSeconds()));
     data->setContent(std::make_shared< ::ndn::Buffer>(m_virtualPayloadSize));
     
-    //コンテンツを追加
     m_keyChain.createIdentity(m_identityName);
     m_keyChain.sign(*data, signingByIdentity(m_identityName));
-    //データに認証を付加
 
     
     m_transmittedDatas(data, this, m_face);
-    //データを送ったことを示すトレースを返す
     m_appLink->onReceiveData(*data);
-    //データを配送
     NS_LOG_DEBUG("Sending Data packet for " << data->getName());
-    //データを送ることをデバックで報告
   }
 
-}//ndnの名前空間の終わり
-}//ns3の名前空間の終わり
+}//ndn
+}//ns3

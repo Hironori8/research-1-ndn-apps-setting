@@ -84,7 +84,7 @@ private:
   //void
   //SendInterest();
 };
-}//ndnのゾーン終わり
-} //ns3のゾーン終わり
+}//ndn
+} //ns3
 
 #endif // CUSTOM_APP_H_
