@@ -19,7 +19,6 @@ namespace ndn {
   
   NS_OBJECT_ENSURE_REGISTERED(CustomRouter2);
 
-  //サーバのID登録
   TypeId
   CustomRouter2::GetTypeId()
   {
@@ -71,7 +70,6 @@ namespace ndn {
   //  m_appLink->onReceiveInterest(*interest);
   //}
 
-  //要求パケットが届いたのちに対応するデータを返す
   void
   CustomRouter2::OnInterest(std::shared_ptr<const ndn::Interest> interest)
   {
@@ -110,5 +108,5 @@ namespace ndn {
 
   // //  std::cout << "DATA received for name " << data->getName() << std::endl;
   // }
-}//ndnの名前空間の終わり
-}//ns3の名前空間の終わり
+}//ndn
+}//ns3

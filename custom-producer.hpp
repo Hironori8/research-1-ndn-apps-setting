@@ -51,42 +51,42 @@ namespace ndn {
  *
  * When an Interest is received, it is replied with a Data with 1024-byte fake payload
  */
-class CustomProducer : public ndn::App {
-public:
-  // register NS-3 type "CustomApp"
-  static TypeId
-  GetTypeId();
-  CustomProducer();
-  // (overridden from ndn::App) Processing upon start of the application
-  virtual void
-  StartApplication();
+		class CustomProducer : public ndn::App {
+		public:
+				// register NS-3 type "CustomApp"
+				static TypeId
+				GetTypeId();
+				CustomProducer();
+				// (overridden from ndn::App) Processing upon start of the application
+				virtual void
+				StartApplication();
 
-  // (overridden from ndn::App) Processing when application is stopped
-  virtual void
-  StopApplication();
+				// (overridden from ndn::App) Processing when application is stopped
+				virtual void
+				StopApplication();
 
-  // (overridden from ndn::App) Callback that will be called when Interest arrives
-  virtual void
-  OnInterest(std::shared_ptr<const ndn::Interest> interest);
+				// (overridden from ndn::App) Callback that will be called when Interest arrives
+				virtual void
+				OnInterest(std::shared_ptr<const ndn::Interest> interest);
 
-  // (overridden from ndn::App) Callback that will be called when Data arrives
-  //virtual void
-  //OnData(std::shared_ptr<const ndn::Data> contentObject);
+				// (overridden from ndn::App) Callback that will be called when Data arrives
+				//virtual void
+				//OnData(std::shared_ptr<const ndn::Data> contentObject);
 
-private:
-  Name m_prefix;
-  Name m_postfix;
-  uint32_t m_virtualPayloadSize;
-  Time m_freshness;
-  Name m_identityName;
-  uint32_t m_signature;
-  Name m_keyLocator;
-  ndn::KeyChain m_keyChain;
-//private:
-  //void
-  //SendInterest();
-};
-}//ndnのゾーン終わり
-} //ns3のゾーン終わり
+		private:
+				Name m_prefix;
+				Name m_postfix;
+				uint32_t m_virtualPayloadSize;
+				Time m_freshness;
+				Name m_identityName;
+				uint32_t m_signature;
+				Name m_keyLocator;
+				ndn::KeyChain m_keyChain;
+		//private:
+				//void
+				//SendInterest();
+		};
+}//ndn
+} //ns3
 
 #endif // CUSTOM_APP_H_
